@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Tree Observation</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+</head>
+<body>
+    <h2>Welcome to Tree Observation</h2>
+    <p>Select a tree to begin observing:</p>
+    <ul>
+        {% for id, name in trees %}
+            <li><a href="/tree/{{ id }}">{{ name }}</a></li>
+        {% endfor %}
+    </ul>
+    
+    {% if session['username'] == 'admin' %}
+        <p><a href="/submissions">View All Submissions (Admin Panel)</a></p>
+    {% endif %}
+
+
+    <p><a href="/logout">Logout</a></p>
+</body>
+</html>

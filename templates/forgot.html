@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Forgot Password</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+</head>
+<body>
+    <h2>Recover Your Account</h2>
+    <form method="POST">
+        <label>Email:</label><input type="email" name="email" required><br>
+        <input type="submit" value="Recover">
+    </form>
+</body>
+</html>

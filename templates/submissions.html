@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Submitted Answers</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h2>All Submitted Tree Observations</h2>
+    <table border="1" cellpadding="5" cellspacing="0">
+    <tr>
+        <th>Username</th>
+        <th>Tree</th>
+        {% for q in question_labels %}
+            <th>{{ q }}</th>
+        {% endfor %}
+        <th>Date</th>
+    </tr>
+    {% for row in submissions %}
+    <tr>
+        {% for item in row %}
+        <td>{{ item }}</td>
+        {% endfor %}
+    </tr>
+    {% endfor %}
+</table>
+
+    <p><a href="/">Back to Home</a></p>
+</body>
+</html>
