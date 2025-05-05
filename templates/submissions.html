@@ -3,27 +3,49 @@
 <head>
     <title>Submitted Answers</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 </head>
 <body>
+    <div class="top-image">
+        <img src="/static/clgbg.png" alt="Top Center Image">
+    </div>
+    <h1>Dravyaguna Department Watch 2025-26</h1>
     <h2>All Submitted Tree Observations</h2>
     <table border="1" cellpadding="5" cellspacing="0">
-    <tr>
-        <th>Username</th>
-        <th>Tree</th>
-        {% for q in question_labels %}
-            <th>{{ q }}</th>
+        <tr>
+            <th>Username</th>
+            <th>Tree Name</th>
+            <th>Tree Image</th>
+            {% for q in question_labels %}
+                <th>{{ q }}</th>
+            {% endfor %}
+            <th>Date</th>
+        </tr>
+        {% for row in submissions %}
+        <tr>
+            <td>{{ row[0] }}</td>  <!-- Username -->
+            <td>{{ row[1] }}</td>  <!-- Tree Name -->
+            <td>
+                {% if row[2] %}
+                    <img src="data:image/jpeg;base64,{{ row[2] }}" alt="Tree Image" width="100">
+                {% else %}
+                    No Image
+                {% endif %}
+            </td>
+            {% for item in row[3:-1] %}
+                <td>{{ item }}</td>
+            {% endfor %}
+            <td>{{ row[-1] }}</td>  <!-- Date -->
+        </tr>
         {% endfor %}
-        <th>Date</th>
-    </tr>
-    {% for row in submissions %}
-    <tr>
-        {% for item in row %}
-        <td>{{ item }}</td>
-        {% endfor %}
-    </tr>
-    {% endfor %}
-</table>
+    </table>
+    <p><a href="/export">📥 Export Submissions as CSV</a></p>
+    <a href="/clear-submissions" onclick="return confirm('Are you sure you want to delete all submissions?');">🗑️ Clear Submissions</a>
 
     <p><a href="/">Back to Home</a></p>
+    <footer class="site-footer">
+      <p>&copy; 2025 Pranav Bhange. All rights reserved.</p>
+    </footer>
 </body>
 </html>

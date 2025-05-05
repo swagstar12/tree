@@ -3,16 +3,23 @@
 <head>
     <title>Tree Observation</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 </head>
 <body>
-    <h2>Welcome to Tree Observation</h2>
-    <p>Select a tree to begin observing:</p>
-    <ul>
-        {% for id, name in trees %}
-            <li><a href="/tree/{{ id }}">{{ name }}</a></li>
-        {% endfor %}
-    </ul>
+    <div class="top-image">
+        <img src="/static/clgbg.png" alt="Top Center Image">
+    </div>
+    <h1>Dravyaguna Department Watch 2025-26</h1>
+    <h2>Organized by Dr Shreyas Shinde(Asso. Professor)</h2>
+    <h2>Let's Start Observing the Tree's</h2>
+    <form action="/start" method="POST" enctype="multipart/form-data">
+        <label>Tree Name:</label>
+        <input type="text" name="tree_name" required><br><br>
+        <label>Upload Tree Image:</label>
+        <input type="file" name="tree_image" accept="image/*" required><br><br>
+        <input type="submit" value="Start Observation">
+    </form>
     
     {% if session['username'] == 'admin' %}
         <p><a href="/submissions">View All Submissions (Admin Panel)</a></p>
@@ -20,5 +27,10 @@
 
 
     <p><a href="/logout">Logout</a></p>
+    <h2>Guided by Dr Satish Paknikar(Professor and HOD)</h2>
+    <footer class="site-footer">
+      <p>&copy; 2025 Pranav Bhange. All rights reserved.</p>
+    </footer>
+
 </body>
 </html>
