@@ -17,7 +17,10 @@ ADMIN_USERNAME = "admin"
 
 # --- DB SETUP ---
 def init_db():
-    conn = sqlite3.connect('tree/database.db')
+    BASE_DIR = os.path.abspath(os.path.dirname(__file__))
+    db_path = os.path.join(BASE_DIR, 'tree', 'database.db')
+    conn = sqlite3.connect(db_path)
+    
     c = conn.cursor()
     c.execute('''CREATE TABLE IF NOT EXISTS users (
                     id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -157,7 +160,10 @@ def register():
         username = request.form['username']
         password = request.form['password']
         email = request.form['email']
-        conn = sqlite3.connect('tree/database.db')
+        BASE_DIR = os.path.abspath(os.path.dirname(__file__))
+        db_path = os.path.join(BASE_DIR, 'tree', 'database.db')
+        conn = sqlite3.connect(db_path)
+        
         c = conn.cursor()
         try:
             c.execute('INSERT INTO users (username, password, email) VALUES (?, ?, ?)', (username, password, email))
